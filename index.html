@@ -1,0 +1,463 @@
+<!Doctype html>
+<html>
+    <head>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+      <script type="text/javascript">var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function() {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  if (this.isDeleting) { delta /= 2; }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+  }
+
+  setTimeout(function() {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid white }";
+  document.body.appendChild(css);
+};</script> 
+        <title>
+            IFudor1a - porfolio| personal site
+        </title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+         <link rel="shortcut icon" href="favicon%20(3).ico" type="image/png">
+    </head>
+    <body>
+        <!------Header----->
+           <header class="header" id="main">
+               <a id="header_title"  href="index.html">IFudor1a</a>
+            <nav class="navbar">
+                <span><a href="#main">Main</a></span>
+                <span><a href="#hobbies">Hobbies</a></span>
+                <span><a href="#About">About Me</a></span>
+                <span><a href="#Works">Works</a></span>
+                <span><a href="#Contacts">Contacts</a></span>
+            </nav>
+        </header>
+        <!------Intro----->
+        <main>
+             <div class="intro">
+                <div class="intro_container">   
+                    <h2 class="intro_title">
+                        <span class="intro_span">
+                            Welcome to the IFudor1a portfolio!
+                        </span>
+                    </h2>
+                <h3 class="intro_subtitle">The holder of this webpage is <span
+     class="txt-rotate"
+     data-period="2000"
+     data-rotate='[ "Geek!", "Anime Watcher.", "Cool Gamer.", "Future Programmist.", "IFudor1a!" ]'></span>
+                    </h3>
+            </div>
+            </div>
+        <!-----Feautures of Programming Languages------->
+            <h4 class="feautures_header">My Programming languages</h4>
+            <div class="feautures">
+                <div class="feautures_container">
+                    <img class="feautures_image" src="java.png">
+                    <h4 class="feautures_title">Java</h4>
+                    <p class="feautures_text">I worked with java and continue to do it,  I had several working projects</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="sql.png">
+                    <h4 class="feautures_title">SQL</h4>
+                    <p class="feautures_text">SQL as java is my favorite language, so by this language, I also had several experiences</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="c++.png">
+                    <h4 class="feautures_title">C++</h4>
+                    <p class="feautures_text">C++, I have medium level by C++, so It could be useful in future</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="html.png">
+                    <h4 class="feautures_title">HTML and CSS</h4>
+                    <p class="feautures_text">I had experience working with HTML and CSS you can watch it on my Github account</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="icons8-javascript-logo-100.png">
+                    <h4 class="feautures_title">Java Script</h4>
+                    <p class="feautures_text">I have experience using JavaScript</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="https://img.icons8.com/clouds/100/000000/phishing.png"/>
+                    <h4 class="feautures_title">Ethical hacker</h4>
+                    <p class="feautures_text">I am an aspiring cybersecurity professional with knowledge of <strong style=" color:blue;">wireshark</strong> and nmap as well as netdiscover</p>
+                </div>
+            </div>
+            <!-----About ME----->
+         <section class="About" id="About">
+             <div class="About_container">
+                 <img class="About_image" src="photo.webp">
+                 <h4 class="About_title">About Me</h4>
+                 <hr class="About_Subline">
+                 <p class="About_text">Hello everyone, my name is Alisher, I am 18 years old and I am a student at Astana IT University. At the moment, I'm at the beginning of the path of becoming a cool IT specialist. I am engaged in Java, SQL, C ++, and markup languages. I still have little experience in this business, but I hope that in the future I will master these programming languages at the senior developer level.
+                 </p>
+                    <div id="social">
+                        <a class="social_item" href="https://www.instagram.com/alisher02b/?hl=ru" target="_blank">
+                        <img class="social_icon" src="https://img.icons8.com/carbon-copy/100/000000/instagram-new.png"/>
+                        </a>
+                        <a class="social_item" href="https://github.com/IFudor1a" target="_blank">
+                        <img class="social_icon" src="https://img.icons8.com/carbon-copy/100/000000/github.png"/>
+                        </a>
+                        <a class="social_item" href="https://www.linkedin.com/in/alisher-berik-7aa259200" target="_blank">
+                        <img class="social_icon" src="https://img.icons8.com/carbon-copy/100/000000/linkedin.png"/>
+                        </a>
+                    </div>
+             </div>
+            </section>
+ <!-----Feautures of Hobbies------->
+            <h4 class="feautures_header" id="hobbies">My lovest Hobbies</h4>
+            <div class="feautures">
+                <div class="feautures_container">
+                    <img class="feautures_image" src="icons8-cat-96.png">
+                    <h4 class="feautures_title">Taking pictures of cat</h4>
+                    <p class="feautures_text">I love taking pictures of my cat</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="icons8-ingredients-for-cooking-96.png">
+                    <h4 class="feautures_title">Cooking</h4>
+                    <p class="feautures_text">I like to cook oriental dishes such as onigiri, I also cook pizza-like dishes</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="icons8-battlefield-1-128.png">
+                    <h4 class="feautures_title">Battlefield Series</h4>
+                    <p class="feautures_text">I'm a huge fan of the Battlefield series, I have all the games from this series</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="rainbow.png">
+                    <h4 class="feautures_title">Rainbow Six Siege</h4>
+                    <p class="feautures_text">My favorite game, with tactical thinking and speed of action</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="icons8-naruto-sign-100%20(1).png">
+                    <h4 class="feautures_title">Anime</h4>
+                    <p class="feautures_text">simple and clear, kawaii san</p>
+                </div>
+                <div class="feautures_container">
+                    <img class="feautures_image" src="icons8-girl-running-200.png"/>
+                    <h4 class="feautures_title">running and pulling up</h4>
+                    <p class="feautures_text">a newly acquired hobby that saves me from fat</p>
+                </div>
+            </div>
+            <!------Works----->
+            <section class="Work">
+                <div class="Work_container">
+                    <img class="Work_image" src="1.png">
+                    <h4 class="Work_title">Work with SQL(Citation from my Project)</h4>
+                    <hr class="Work_Subline"> 
+                    <p class="Work_text">The purpose of my database is simple, honestly, it is needed for tracking staff passengers and routes of aircraft that include: revenue, airport, amount of tickets, and flight information and additional things spired with passengers, consequently, it needs for monitoring all conducted with aircraft and his environment. For instance, some group of people bought tickets, after they bought  tickets information came to my database, therefore all information conducted with passengers the  same as passport id, destination point, flight information and things like revenue from his ticket and his class of ticket will writen in my database</p>
+                    <a class="Work_Button" href="https://drive.google.com/file/d/1eqvOUax_5e4rxNpmgUZDF5xqFjyMTZ72/view?usp=sharing">More Information</a>
+                </div>
+                </section>
+            <section class="Work" id="Works">
+                  <div class="Work_container">
+                    <img class="Work_image_Java" src="unnamed.jpg">
+                    <h4 class="Work_title">Work with Java(Citation from my Project)</h4>
+                    <hr class="Work_Subline"> 
+                    <p class="Work_text"><abbr title="Customer relationship management">CRM</abbr> is a technology for managing all your company's relationships and interactions with customers and potential customers. The goal is simple: Improve business relationships. A CRM system helps companies stay connected to customers, streamline processes, and improve profitability.</p>
+                    <a class="Work_Button" href="https://github.com/IFudor1a/Enterm_project#enterm_project">More Information</a>
+                </div>
+                </section>
+                <section class="Work">
+                  <div class="Work_container">
+                    <img class="Work_image" src="vsppq8f6xcgmhyeztyugyzajw4c.png">
+                    <h4 class="Work_title">Work with C++(Citation from my Project)</h4>
+                    <hr class="Work_Subline"> 
+                    <p class="Work_text">With C++ I just solvel a lot of problems</p>
+                    <a class="Work_Button" href="http://85.159.27.100:31007/en/">More Information</a>
+                </div>
+                    </section>
+                    <div class="Work">
+                  <div class="Work_container">  
+                    <img class="Work_image_HTML" src="2.png">
+                    <h4 class="Work_title">Work with HTML and CSS(Citation from my Project)</h4>
+                    <hr class="Work_Subline"> 
+                    <p class="Work_text">With HTML and CSS I created some websites, like coffee shop, anime shope, and now working with my new project <strong style="orange">School of Shinobi</strong></p>
+                    <a class="Work_Button" href="https://github.com/IFudor1a/Coffee-Tale">More Information</a>
+                </div>
+            </div>
+            <!----Some--Table---For----Assignment--->
+            <div id="Education">
+                <div class="feautures_container_aitu">
+                    <img class="feautures_image_aitu" src="aitu-logo-2-600x315.png">
+                    <h4 class="feautures_title">Student of Astana IT University</h4>
+                    <p class="feautures_text">I'm a student of Astana IT University on 1 course with a cybersecurity specialization</p>
+                </div>
+                <h2 class="feautures_header">Education</h2>
+                <center>
+                <table> 
+                    <caption>Some information about education</caption>
+                    <tr>
+                        <th colspan="8";><span>Astana IT University</span><br>
+                            Alisher Berik<br>
+                            Cyber Secuirity<br>
+                            Education 2020<br>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="8">Триместр 1 GPA - 3.2</th>
+                    </tr>
+                    <tr>
+                        <th>№</th>
+                        <th>Наименование дисциплины</th>
+                        <th>Код дисциплины</th>
+                        <th>Количество кредитов</th>
+                        <th>Оценка в процентах</th>
+                        <th>буквенная</th>
+                        <th>в баллах</th>
+                        <th>традиционная</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Физическая культура	</td>
+                        <td>Fiz 1112</td>
+                        <td>2</td>
+                        <td>95.0</td>
+                        <td>A</td>
+                        <td>4.0</td>
+                        <td>Отлично</td>
+                    </tr>
+                       <tr>
+                        <td>2</td>
+                        <td>Информационно-коммуникационные технологии</td>
+                        <td>IKT 1105</td>
+                        <td>5</td>
+                        <td>93.0</td>
+                        <td>A-</td>
+                        <td>3.67</td>
+                        <td>Отлично</td>
+                    </tr>
+                       <tr>
+                        <td>3</td>
+                        <td>Иностранный язык</td>
+                        <td>IYa 1103</td>
+                        <td>5</td>
+                        <td>82.0</td>
+                        <td>b</td>
+                        <td>3.0</td>
+                        <td>Хорошо</td>
+                    </tr>
+                       <tr>
+                        <td>4</td>
+                        <td>Математический анализ 1</td>
+                        <td>MA1 1202</td>
+                        <td>5</td>
+                        <td>73.0</td>
+                        <td>C+</td>
+                        <td>2.33</td>
+                        <td>Хорошо</td>
+                    </tr>
+                       <tr>
+                        <td>5</td>
+                        <td>Современная История Казахстана (Гос. экзамен)</td>
+                        <td>SIK 1102</td>
+                        <td>5</td>
+                        <td>94.0</td>
+                        <td>A-</td>
+                        <td>3.67</td>
+                        <td>Отлично</td>
+                    </tr>
+                       <tr>
+                        <td>6</td>
+                        <td>Введение в программирование C++</td>
+                        <td>VP1213</td>
+                        <td>5</td>
+                        <td>79.0</td>
+                        <td>B-</td>
+                        <td>2.67</td>
+                        <td>Хорошо</td>
+                    </tr>
+                </table>
+                </center>
+            </div>
+              <div id="Education">
+                <center>
+                <table> 
+                    <caption>Some information about education of II trimester</caption>
+                    <tr>
+                        <th colspan="8";><span>Astana IT University</span><br>
+                            Alisher Berik<br>
+                            Cyber Secuirity<br>
+                            Education 2020<br>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="8">Триместр 2 GPA - 3.14</th>
+                    </tr>
+                    <tr>
+                        <th>№</th>
+                        <th>Наименование дисциплины</th>
+                        <th>Код дисциплины</th>
+                        <th>Количество кредитов</th>
+                        <th>Оценка в процентах</th>
+                        <th>буквенная</th>
+                        <th>в баллах</th>
+                        <th>традиционная</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Объектно-ориентированное программирование Java	</td>
+                        <td>CSE 127</td>
+                        <td>5</td>
+                        <td>95.0</td>
+                        <td>A</td>
+                        <td>4.0</td>
+                        <td>Отлично</td>
+                    </tr>
+                       <tr>
+                        <td>2</td>
+                        <td>Модуль социально-политических знаний: Культурология</td>
+                        <td>Cult 1111</td>
+                        <td>2</td>
+                        <td>84.0</td>
+                        <td>B</td>
+                        <td>3.0</td>
+                        <td>Хорошо</td>
+                    </tr>
+                       <tr>
+                        <td>3</td>
+                        <td>Дискретная математика</td>
+                        <td>DM 3205</td>
+                        <td>5</td>
+                        <td>77.0</td>
+                        <td>B-</td>
+                        <td>2.67</td>
+                        <td>Хорошо</td>
+                    </tr>
+                       <tr>
+                        <td>4</td>
+                        <td>Физическая культура</td>
+                        <td>Fiz 1114</td>
+                        <td>2</td>
+                        <td>80.0</td>
+                        <td>B</td>
+                        <td>3.0</td>
+                        <td>Хорошо</td>
+                    </tr>
+                       <tr>
+                        <td>5</td>
+                        <td>Иностранный язык</td>
+                        <td>IYa 1104</td>
+                        <td>5</td>
+                        <td>88.0</td>
+                        <td>B+</td>
+                        <td>3.33</td>
+                        <td>Хорошо</td>
+                    </tr>
+                       <tr>
+                        <td>6</td>
+                        <td>Математический анализ 2</td>
+                        <td>MA2 1203</td>
+                        <td>5</td>
+                        <td>79.0</td>
+                        <td>B-</td>
+                        <td>2.67</td>
+                        <td>Хорошо</td>
+                    </tr>
+                </table>
+                </center>
+            </div>
+            <!--------Form------->
+            <section class="Form">
+                <h3 id="form_title">If you want contact with me,please fill this form</h3>
+                <form action="mailto:alisher.berik222@gmail.com" enctype="text/plain" id="form" method="get">
+                    <div  id="input-labe" for="name">Your name:</div>
+                        <input class="form" type="text" size="40" name="Name" required>
+                  <div  id="input-labe" for="phone">Your phone number</div>
+                        <input class="form" type="text" name="phone" required>
+                       <div  id="input-labe" for="E-mail">Your e-mail adress</div>
+                        <input class="form" type="email" name="email" required>
+                        <div  id="input-labe" for="tech">Technologies</div>
+                        <input class="form" list="technologies" name="Technology" required/>
+                        <datalist id="technologies">
+                            <option value="HTML">
+                            <option value="CSS">
+                            <option value="JAVA">
+                            <option value="C++">
+                            <option value="SQL">
+                        </datalist>
+                  <div  id="input-labe" for="company">Company name</div> 
+                        <input class="form" type="text" name="company" required>
+                       <div  id="input-labe" for="free_time">Your free time</div>
+                    <input class="form" type="datetime-local" name="freetime" min="2021-04-10" required>
+                    <div  id="input-labe" for="privacy"> You agree to the privacy policy</div>
+                    <input class="form" type="checkbox" name="agreement" required>Yes,I agree
+                    <button class="Button" type="submit" form="form" value="Submit">Submit</button>
+                </form>
+            </section>
+        </main>
+          <footer class="footer" id="Contacts">
+           <div class="footer_container">
+            <div class="footer_inner">
+                <img class="footer_logo"src="favicon%20(3).ico">
+                <div class="footer_block">     
+                    <h4 class="footer_title">Location</h4>
+                    <address id="bottom" class="footer_address">
+                    <div>Nur-Sultan,Sauran Street</div>
+                    </address>
+                </div>
+                <div class="footer_block">
+                    <h4 class="footer_title">Contacts</h4>
+                    <address id="bottom" class="footer_address">
+                    <div>87082264731</div>
+                    <div>87783706983</div>
+                    </address>
+                </div>
+                  <div class="footer_block">
+                <h4 class="footer_title">IFudor1a Portfolio</h4>
+                <div class="footer_text">
+                    <p>WORK....Anime....SPORT</p>
+                </div>
+            </div>
+                <div class="footer_block">
+                    <div id="footer_priv">©IFudor1a</div>
+                    <div>alisher.berik222@gmail.com</div>
+                </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
